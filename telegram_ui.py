@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import copy
+import argparse
 import telebot
+import logging
 
 from glavred_api import GlavRed
-import logging
 
 
 class UserState:
@@ -112,7 +113,13 @@ def interact_glavred_by_telegram(token):
         init_bot(token, glvred)
 
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-t", "--token",  help="telegram bot token")
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    token = "454384338:AAH3HXUPeiWzOtv_ymVgeYBrzc1bWrcCbD0"
-    interact_glavred_by_telegram(token)
+    opts = parse_args()
+    interact_glavred_by_telegram(opts.token)
 
